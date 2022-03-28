@@ -34,18 +34,17 @@ def printBoard(board):
                 print(str(board[row][col]) + " ", end="")
     
 def valid(board, pos, num):
-    # Check row
+    # Check if it exists in row
     for i in range(0, len(board)):
         if board[pos[0]][i] == num and pos[1] != i:
             return False
 
-    # Check Col
+    # Check if it exists in Column
     for i in range(0, len(board)):
         if board[i][pos[1]] == num and pos[1] != i:
             return False
 
-    # Check box
-
+    # Check what box its in
     box_x = pos[1]//3
     box_y = pos[0]//3
 
