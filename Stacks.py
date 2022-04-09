@@ -15,7 +15,7 @@ class Stack:
         print(self.items)
     
 s = Stack()
-s.push('a')
+s.push('a') 
 s.push('b')
 s.push('c')
 s.print_stack()
