@@ -44,6 +44,7 @@ s.add_at_front(9)
 s.print_list()
 print(s.get_last_node())
 
+'''
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, val=0, next=None):
@@ -78,3 +79,4 @@ class Solution:
                 currNode = currNode.next
         
         return head
+'''

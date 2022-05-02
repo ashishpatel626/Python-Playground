@@ -1,5 +1,11 @@
-l = [[1,2,3],[4,5,6],[7,8,9]]
+from email import header
 
 
+class Node:
+    def __init__(self, data, next):
+        self.data = data
+        self.next = None
 
-print(l.size())
+class linkedList:
+    def __init__(self):
+        
