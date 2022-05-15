@@ -1,11 +1,8 @@
-from email import header
+import sys
+a = 'my-string'
 
 
-class Node:
-    def __init__(self, data, next):
-        self.data = data
-        self.next = None
+d = [a]
+l = sys.getrefcount(a)
 
-class linkedList:
-    def __init__(self):
-        
+print(l)
