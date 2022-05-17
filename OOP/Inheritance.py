@@ -1,20 +1,27 @@
-class car():
+from multipledispatch import dispatch 
+
+class car:
     def __init__(self, make, model, year):
-        self.make = input("Enter Make ")
-        self.model = input("Enter Model ")
-        self.year = input("Enter year ")
+        self.make = make
+        self.model = model
+        self.year = year
 
-        return (self.make + " " + self.model + " " + self.year)
+    @dispatch(int, int)
+    def mak(a, b):
+        result = a * b
+        return result
 
+class electricCar(car):
+    def __init__(self, make, model, year, battery):
+        car.__init__(self, make, model, year)
+        self.battery = battery
+    
+    @dispatch(int)
+    def mak(a):
+        return a
 
-class electric(car):
-    def batteryType(self, type):
-        self.type = input("Enter Battery Type ")
-        return self.type
+car1 = car("honda", "insight", 2019)
 
+ecar = electricCar("honda", "insight", 2019, "LG")
 
-el = electric("a", "b", "c")
-
-print(el.batteryType())
-
-
+print(ecar.mak(4, 5))

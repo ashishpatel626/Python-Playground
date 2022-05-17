@@ -1,18 +1,35 @@
+from multipledispatch import dispatch
 
-class Student:
-    def __init__(self, m1, m2):
-        self.m1 = m1
-        self.m2 = m2
+@dispatch(int, int)
+def product(first, second):
+    result = first * second
+    return result
 
-    def __add__(self, other):
-        m1 = self.m1 + other.m1
-        m2 = self.m2 + other.m2
-        s3 = Student(m1, m2)
-        return s3
+@dispatch(int, int, int)
+def product(first, second, third):
+    result = first * second * third
+    return result
 
-s1 = Student(58, 69)
-s2 = Student(69, 65) 
+print(product(3, 3))
 
-s3 = s1 + s2
+class car:
+    def __init__(self, model, make, year):
+        self.model = model
+        self.make = make
+        self.year = year
+    
+    def product(self):
+        return 10
+    
+class electricCar(car):
+    def __init__(self, make, model, year, battery):
+        car.__init__(self, make, model, year)
+        self.battery = battery
+    
+    def product(self):
+        x = car.product(self)
+        return x
 
-print(s3.m2, s3.m1)
+car1 = car("honda", "insight", 2019)
+ecar = electricCar("honda", "insight", 2019, "LG")
+print(ecar.product())

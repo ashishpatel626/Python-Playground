@@ -23,4 +23,4 @@ com1 = laptop()
 com2 = Whiteboard()
 prog1 = Programmer()
 
-prog1.work(com2)
+prog1.work(com1)
