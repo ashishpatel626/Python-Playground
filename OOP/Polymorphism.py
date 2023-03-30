@@ -1,4 +1,5 @@
 from multipledispatch import dispatch
+import gc
 
 @dispatch(int, int)
 def product(first, second):
@@ -10,7 +11,7 @@ def product(first, second, third):
     result = first * second * third
     return result
 
-print(product(3, 3))
+
 
 class car:
     def __init__(self, model, make, year):
@@ -27,9 +28,29 @@ class electricCar(car):
         self.battery = battery
     
     def product(self):
-        x = car.product(self)
-        return x
+        return super().product()
 
 car1 = car("honda", "insight", 2019)
 ecar = electricCar("honda", "insight", 2019, "LG")
+
 print(ecar.product())
+
+class Book:
+    def __init__(self, price):
+        self.price = price
+
+    def __add__(self, other):
+        return self.price + other.price
+
+    def __lt__(self, other):
+        return self.price < other.price
+
+book1 = Book(10)
+book2 = Book(20)
+
+total_price = book1 + book2
+compare = book1 < book2
+print (compare)
+
+
+print(gc.get_threshold())
