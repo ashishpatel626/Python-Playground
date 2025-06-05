@@ -42,7 +42,7 @@ s.add_at_end(8)
 s.add_at_front(9)
 
 s.print_list()
-print(s.get_last_node())
+print(s.is_empty())
 
 '''
 # Definition for singly-linked list.
