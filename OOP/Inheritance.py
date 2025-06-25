@@ -1,27 +1,13 @@
-from multipledispatch import dispatch 
+class Person:
+    def __init__ (self, firstName, lastName):
+        self.firstName = firstName
+        self.lastName = lastName
 
-class car:
-    def __init__(self, make, model, year):
-        self.make = make
-        self.model = model
-        self.year = year
-
-    @dispatch(int, int)
-    def mak(a, b):
-        result = a * b
-        return result
-
-class electricCar(car):
-    def __init__(self, make, model, year, battery):
-        car.__init__(self, make, model, year)
-        self.battery = battery
+    def printFullName(self):
+        fullName = self.firstName + " " + self.lastName
+        return fullName
     
-    @dispatch(int)
-    def mak(a):
-        return a
 
-car1 = car("honda", "insight", 2019)
-
-ecar = electricCar("honda", "insight", 2019, "LG")
-
-print(ecar.mak(4, 5))
+if __name__ == '__main__':
+    Name = Person("Solid", "Snake")
+    print(Name.printFullName())
