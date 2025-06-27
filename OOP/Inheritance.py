@@ -1,40 +1,43 @@
-class Person:
-    def __init__(self, first_name: str, last_name: str, **kwargs) -> None:
-        self.first_name = first_name
-        self.last_name = last_name
-        super().__init__(**kwargs)
-
-    def fullName(self) -> str:
-        fullName = f'{self.first_name} {self.last_name}'
-        return fullName
-
-class Pet:
-    def __init__(self, animal: str, age: int, color: str, **kwargs) -> None:
-        if age < 0:
-            raise ValueError("Age can not be a negative number")
-        self.animal = animal
-        self.age = age
+class hardening:
+    def __init__(self, thickness: int, color: str, **kwargs) -> None:
+        self.thickness = thickness
         self.color = color
         super().__init__(**kwargs)
 
-    def pet_info(self) -> str:
-        info = f'Type: {self.animal}, Age: {self.age}, Color: {self.color}'
+class stamina:
+    def __init__(self, transform_times: int, duration: int, **kwargs) -> None:
+        self.transform_times = transform_times
+        self.duration = duration
+        super().__init__(**kwargs)
+    
+    def jump(self) -> str:
+        return 'Can Jump'
+    
+    def fly(self) -> str:
+        return 'Can fly'
+        
+
+class titan(hardening, stamina):
+    def __init__(self, name: str, ability: str, height: int, thickness: int, color: str, transform_times: int, duration: int, **kwargs) -> None:
+        self.name = name
+        self.ability = ability
+        self.height = height
+        super().__init__(thickness=thickness, color=color, transform_times=transform_times, duration=duration, **kwargs)
+        
+    def info(self) -> str:
+        info = f'Name: {self.name} | Ability: {self.ability} | Height: {self.height} | Thickness: {self.thickness} | Color: {self.color} | Number of Transformations: {self.transform_times} | Duration {self.duration}'
         return info
 
-class Student(Person, Pet):
-    def __init__(self, first_name: str, last_name: str, animal: str, age: int, color: str, id: int, dorm: str) -> None:
-        super().__init__(first_name=first_name, last_name=last_name, animal=animal, age=age, color=color)
-        if not id:
-            raise ValueError("id can not be empty")
-        self.id = id
-        self.dorm = dorm
+    def fly(self) -> str:
+        return 'Can only Glide'
+    
+
 
 if __name__ == '__main__':
-    try:
-        student1 = Student('Raiden', 'El', 'tiger', 20, 'black', 101, 'South Building')
-    except ValueError as e:
-        print(f'Error: {e}')
+    armored_titan = titan('Armored Titan', 'Covered in thick hardening', 50, 5, 'black', 3, 5)
 
-    print(student1.fullName())
-    print(student1.petInfo())
+    print(armored_titan.info())
+    print(armored_titan.fly())
 
+
+    
