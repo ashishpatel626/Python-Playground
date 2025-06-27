@@ -17,7 +17,7 @@ class Pet:
         self.color = color
         super().__init__(**kwargs)
 
-    def petInfo(self) -> str:
+    def pet_info(self) -> str:
         info = f'Type: {self.animal}, Age: {self.age}, Color: {self.color}'
         return info
 
