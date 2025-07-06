@@ -4,7 +4,7 @@ class Person:
         self.last_name = last_name
         super().__init__(**kwargs)
 
-    def fullName(self) -> str:
+    def full_name(self) -> str:
         fullName = f'{self.first_name} {self.last_name}'
         return fullName
 
@@ -30,11 +30,9 @@ class Student(Person, Pet):
         self.dorm = dorm
 
 if __name__ == '__main__':
-    try:
-        student1 = Student('Raiden', 'El', 'tiger', 20, 'black', 101, 'South Building')
-    except ValueError as e:
-        print(f'Error: {e}')
 
-    print(student1.fullName())
-    print(student1.petInfo())
+    student1 = Student('Raiden', 'El', 'tiger', 20, 'black', 101, 'South Building')
+
+    print(student1.full_name())
+    print(student1.pet_info())
 
