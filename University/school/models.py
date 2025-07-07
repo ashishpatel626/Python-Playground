@@ -41,17 +41,3 @@ class Student(Person, Pet):
     @dispatch(str)
     def study(self, subject: str):
         return f'Studying {subject}'
-
-if __name__ == '__main__':
-
-    student1 = Student('Raiden', 'El', 'tiger', 20, 'black', 101, 'South Building')
-
-    print(len(student1))
-    print(student1.study())
-    print(student1.study('Math'))
-
-'''
-1. Theory: The super() function is used to inherit the parameters of the parent class.
-The inhertiable classes need **kwargs because of the arbitrary number of arguments that will be inheritied by a child class.
-
-'''
