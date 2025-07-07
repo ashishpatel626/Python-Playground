@@ -1,3 +1,5 @@
+from multipledispatch import dispatch
+
 class Person:
     def __init__(self, first_name: str, last_name: str, **kwargs) -> None:
         self.first_name = first_name
@@ -28,11 +30,28 @@ class Student(Person, Pet):
             raise ValueError("id can not be empty")
         self.id = id
         self.dorm = dorm
+    
+    def __len__(self) -> int:
+        return len(self.full_name())
+
+    @dispatch()
+    def study(self):
+        return 'Studying general subjects'
+    
+    @dispatch(str)
+    def study(self, subject: str):
+        return f'Studying {subject}'
 
 if __name__ == '__main__':
 
     student1 = Student('Raiden', 'El', 'tiger', 20, 'black', 101, 'South Building')
 
-    print(student1.full_name())
-    print(student1.pet_info())
+    print(len(student1))
+    print(student1.study())
+    print(student1.study('Math'))
 
+'''
+1. Theory: The super() function is used to inherit the parameters of the parent class.
+The inhertiable classes need **kwargs because of the arbitrary number of arguments that will be inheritied by a child class.
+
+'''
