@@ -36,7 +36,7 @@ class Student(Person, Pet):
         return len(self.full_name())
 
     @singledispatchmethod
-    def study(self, subject: int) -> str:
+    def study(self, none: None) -> str:
         return 'Studying general subjects'
     
     @study.register
