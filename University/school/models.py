@@ -1,8 +1,8 @@
-from multipledispatch import dispatch
 from functools import singledispatchmethod
+from typing import Any
 
 class Person:
-    def __init__(self, first_name: str, last_name: str, **kwargs) -> None:
+    def __init__(self, first_name: str, last_name: str, **kwargs: Any) -> None:
         self.first_name = first_name
         self.last_name = last_name
         super().__init__(**kwargs)
@@ -12,7 +12,7 @@ class Person:
         return fullName
 
 class Pet:
-    def __init__(self, animal: str, age: int, color: str, **kwargs) -> None:
+    def __init__(self, animal: str, age: int, color: str, **kwargs: Any) -> None:
         if age < 0:
             raise ValueError("Age can not be a negative number")
         self.animal = animal
