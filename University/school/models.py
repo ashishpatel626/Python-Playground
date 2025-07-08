@@ -1,4 +1,5 @@
 from multipledispatch import dispatch
+from functools import singledispatchmethod
 
 class Person:
     def __init__(self, first_name: str, last_name: str, **kwargs) -> None:
@@ -34,10 +35,10 @@ class Student(Person, Pet):
     def __len__(self) -> int:
         return len(self.full_name())
 
-    @dispatch()
+    @singledispatchmethod
     def study(self):
         return 'Studying general subjects'
     
-    @dispatch(str)
-    def study(self, subject: str):
+    @study.register
+    def _(self, subject: str):
         return f'Studying {subject}'
