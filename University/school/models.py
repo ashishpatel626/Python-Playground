@@ -1,4 +1,3 @@
-from multipledispatch import dispatch
 from functools import singledispatchmethod
 
 class Person:
@@ -36,9 +35,9 @@ class Student(Person, Pet):
         return len(self.full_name())
 
     @singledispatchmethod
-    def study(self):
+    def study(self, subject: int) -> str:
         return 'Studying general subjects'
     
     @study.register
-    def _(self, subject: str):
+    def _(self, subject: str) -> str:
         return f'Studying {subject}'
