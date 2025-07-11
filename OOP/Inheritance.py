@@ -5,16 +5,17 @@
 
 '''
 import functools
+from typing import Any
 
-def log_call(func):
+def log_call(func: function) -> None:
     @functools.wraps(func)
-    def wrapper(*args, **kwargs):
+    def wrapper(*args: Any, **kwargs: Any) -> function:
         print(f'Method Name: {func.__name__} Arguments {args[1:]}, keyword Arguments: {kwargs}')
         return func(*args, **kwargs)
     return wrapper
 
 class Sports:
-    def __init__(self, sport: str, division: int, **kwargs):
+    def __init__(self, sport: str, division: int, **kwargs: Any):
         self.sport = sport
         self.division = division
         super().__init__(**kwargs)
