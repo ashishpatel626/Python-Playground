@@ -1,5 +1,5 @@
 from functools import singledispatchmethod
-
+from typing import Callable
 
 class addition:
     def __init__(self, a: int, b:int, z:int) -> None:
@@ -8,29 +8,20 @@ class addition:
         self.z = z
 
     @singledispatchmethod
-    def __add__(self, other) -> int:
-        return addition(self.a + other.a, self.b + other)
+    def __add__(self, other: 'addition'):
+        return self.a + other.a, self.b + other.b, self.z + other.z
 
     @__add__.register(int)
-    def __add__(self, other) -> int:
-        return addition(self.a + other.a, self.b, self.z + other)
+    def _(self, other: int):
+        return self.a + other, self.b + other, self.z + other
 
-odd_list = [x for x in range(10) if x%2 != 0]
-
-def odd_num_generator():
-    for i in range(1, 11, 2):
-        yield i
-
-def filter_string(strings: list[str], min_length: int) -> list[str]:
-    string_list = [x for x in strings if len(x) >= min_length]
-    return string_list
-
-
-
+x : Callable[[int, int], int] = lambda x, y : x + y
 
 if __name__ == '__main__':
     addition1 = addition(2, 4, 5)
-    addition1.__add__
-    # print(odd_list)
-    # print(list(odd_num_generator()))
-    # print(filter_string(['test1', 'test2', 'test3', 'test4', 'te'], 3))
+    addition2 = addition(3, 5, 6)
+
+    print(addition1 + addition2)
+    print(addition1 + 1)
+
+    print(x(5, 4))
