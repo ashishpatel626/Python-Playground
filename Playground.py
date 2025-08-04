@@ -1,27 +1,57 @@
-from functools import singledispatchmethod
-from typing import Callable
+def reverse_string(string: str) -> str:
+    reversed_string = ""
+    for x in string[:: -1]:
+        reversed_string += x
 
-class addition:
-    def __init__(self, a: int, b:int, z:int) -> None:
-        self.a = a
-        self.b = b
-        self.z = z
+    return reversed_string
 
-    @singledispatchmethod
-    def __add__(self, other: 'addition'):
-        return self.a + other.a, self.b + other.b, self.z + other.z
+# def missing_number(array: list[int]):
+#     n = len(array) + 1
+#     actual_sum = sum(array)
+#     expected_sum =  
+            
+def Palindrome(string: str):
+    string = string.lower().replace(' ', '').replace(',', '').replace(':', '')
+    if string[::-1] == string:
+        return True
+    return False
 
-    @__add__.register(int)
-    def _(self, other: int):
-        return self.a + other, self.b + other, self.z + other
+def fizz_buzz(n: int):
+    for i in range(1, n + 1):
+        if i % 3 == 0 and i % 5 == 0:
+            print('FizzBuzz')
+        elif i % 3 == 0:
+            print('Fizz')
+        elif i % 5 == 0:
+            print('Buzz')
+        else:
+            print(i)
 
-x : Callable[[int, int], int] = lambda x, y : x + y
+def two_sum(array: list[int], target: int) -> list[int]:
+        
+        sorted_array = array
+        sorted_array.sort()
+        l = 0
+        r = len(sorted_array) - 1
+        while l < r:
+            if sorted_array[l] + sorted_array[r] > target:
+                r -= 1
+            if sorted_array[l] + sorted_array[r] < target:
+                l += 1
+            if sorted_array[l] + sorted_array[r] == target:
+                break
+
+        index_array : list[int] = []
+        index_array.append(array.index(sorted_array[l]))
+        index_array.append(array.index(sorted_array[r]))
+        return index_array
+
+
+
 
 if __name__ == '__main__':
-    addition1 = addition(2, 4, 5)
-    addition2 = addition(3, 5, 6)
-
-    print(addition1 + addition2)
-    print(addition1 + 1)
-
-    print(x(5, 4))
+    # print(reverse_string('hello'))
+    # print(missing_number([1, 2, 4, 5, 6]))
+    # print(Palindrome('A man, a plan, a canal: Panama'))
+    # fizz_buzz(15)
+    print(two_sum([2, 7, 11, 15], 9))
