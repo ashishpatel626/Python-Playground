@@ -1,6 +1,14 @@
 from functools import singledispatchmethod
+from multipledispatch import dispatch
 from typing import Any
 
+class InvalidStudentError(Exception):
+    def __init__(self, message: str):
+        self.message = message
+
+    def __str__(self) -> str:
+        return f'{self.message}'
+    
 class Person:
     def __init__(self, first_name: str, last_name: str, **kwargs: Any) -> None:
         self.first_name = first_name
@@ -30,6 +38,8 @@ class Student(Person, Pet):
         if not id:
             raise ValueError("id can not be empty")
         self.id = id
+        if not dorm:
+            raise InvalidStudentError('Dorm can not be empty')
         self.dorm = dorm
     
     def __len__(self) -> int:
@@ -42,3 +52,9 @@ class Student(Person, Pet):
     @study.register
     def _(self, subject: str) -> str:
         return f'Studying {subject}'
+    
+@dispatch(int, int)
+def add(x: int, y: int) -> int:
+    return x + y
+
+print(add(1, 2))

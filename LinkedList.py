@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self, data, next):
+    def __init__(self, data: int, next: 'Node | None') -> None:
         self.data = data
         self.next = next
 
@@ -7,10 +7,10 @@ class LinkedList:
     def __init__(self):
         self.head = None
     
-    def add_at_front(self, data):
+    def add_at_front(self, data: int):
         self.head = Node(data, self.head)      
 
-    def add_at_end(self, data):
+    def add_at_end(self, data: int):
         if not self.head:
             self.head = Node(data, None)
             return
@@ -20,6 +20,8 @@ class LinkedList:
         curr.next = Node(data, None)
 
     def get_last_node(self):
+        if not self.head:
+            return None
         n = self.head
         while(n.next != None):
             n = n.next

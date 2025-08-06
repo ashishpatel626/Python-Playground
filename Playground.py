@@ -28,30 +28,32 @@ def fizz_buzz(n: int):
             print(i)
 
 def two_sum(array: list[int], target: int) -> list[int]:
-        
-        sorted_array = array
-        sorted_array.sort()
-        l = 0
-        r = len(sorted_array) - 1
-        while l < r:
-            if sorted_array[l] + sorted_array[r] > target:
-                r -= 1
-            if sorted_array[l] + sorted_array[r] < target:
-                l += 1
-            if sorted_array[l] + sorted_array[r] == target:
-                break
+    seen = {}
+    for i, num in enumerate(array):
+        complement = target - num
+        if complement in seen:
+            return [seen[complement], i]
+        seen[num] = i
+    return []
 
-        index_array : list[int] = []
-        index_array.append(array.index(sorted_array[l]))
-        index_array.append(array.index(sorted_array[r]))
-        return index_array
-
-
-
+def function():
+    try:
+        return float('hello')
+    except ValueError:
+        return 'invalid type'
+       
+    
 
 if __name__ == '__main__':
     # print(reverse_string('hello'))
     # print(missing_number([1, 2, 4, 5, 6]))
     # print(Palindrome('A man, a plan, a canal: Panama'))
+
     # fizz_buzz(15)
-    print(two_sum([2, 7, 11, 15], 9))
+    # print(two_sum([2, 7, 11, 15], 9))
+    print(function())
+
+
+'''
+
+'''

@@ -1,7 +1,9 @@
-from student.student_utils import get_full_info
-from school import Student
+from student import create_student, data
 
 if __name__ == '__main__':
-    student1 = Student('Raiden', 'El', 'tiger', 20, 'black', 101, 'South Building')
-    print(get_full_info(student1))
-    print(student1.study(None))
+    student_data : data = {'first_name': 'John', 'last_name': 'Adam', 'animal': 'Tiger', 'age': 34, 'color': 'black', 'id': 10, 'dorm': 'falcon'}
+
+    student1 = create_student(data=student_data)
+
+
+    print(student1.full_name())
