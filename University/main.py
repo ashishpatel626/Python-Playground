@@ -5,5 +5,4 @@ if __name__ == '__main__':
 
     student1 = create_student(data=student_data)
 
-
-    print(student1.full_name())
+    

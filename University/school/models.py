@@ -1,6 +1,7 @@
 from functools import singledispatchmethod
-from multipledispatch import dispatch
 from typing import Any
+import sys; print(sys.executable)
+from abc import ABC, abstractmethod
 
 class InvalidStudentError(Exception):
     def __init__(self, message: str):
@@ -45,16 +46,18 @@ class Student(Person, Pet):
     def __len__(self) -> int:
         return len(self.full_name())
 
-    @singledispatchmethod
-    def study(self, none: None) -> str:
-        return 'Studying general subjects'
-    
-    @study.register
-    def _(self, subject: str) -> str:
-        return f'Studying {subject}'
-    
-@dispatch(int, int)
-def add(x: int, y: int) -> int:
-    return x + y
+# class Student(Person, Pet):
+#     @overload
+#     def study(self) -> str: ...
+#     @overload
+#     def study(self, subject: str) -> str: ...
+#     def study(self, subject: str | None = None) -> str:
+#         if subject is None:
+#             return "Studying general subjects"
+#         return f"Studying {subject}"
 
-print(add(1, 2))
+class degree(ABC):
+    @abstractmethod
+    def masters(self):
+        pass
+
