@@ -1,4 +1,3 @@
-from functools import singledispatchmethod
 from typing import Any
 import sys; print(sys.executable)
 from abc import ABC, abstractmethod
@@ -45,16 +44,6 @@ class Student(Person, Pet):
     
     def __len__(self) -> int:
         return len(self.full_name())
-
-# class Student(Person, Pet):
-#     @overload
-#     def study(self) -> str: ...
-#     @overload
-#     def study(self, subject: str) -> str: ...
-#     def study(self, subject: str | None = None) -> str:
-#         if subject is None:
-#             return "Studying general subjects"
-#         return f"Studying {subject}"
 
 class degree(ABC):
     @abstractmethod
