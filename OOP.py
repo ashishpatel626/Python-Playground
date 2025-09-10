@@ -35,7 +35,7 @@ class animals():
         print(f'{self.name} says hi!')
     
     @dispatch(str)
-    def _(self, custom_sound: str):
+    def greet(self, custom_sound: str):
         print(f'{self.name} says {custom_sound}')
     
 
@@ -52,4 +52,4 @@ class dog(animals, swim):
 if __name__ == "__main__":
     molly = dog('lab', None, 'Molly', 'black', 3, 30, 50)
     
-    molly.greet()
+    molly.greet('test')
