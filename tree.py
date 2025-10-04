@@ -1,33 +1,26 @@
-from typing import Optional, Any
+from typing import Optional
 
+class Node:
+    def __init__(self, val: int, right: Optional['Node'] = None, left: Optional['Node'] = None):
+        self.val = val
+        self.left = left
+        self.right = right
+    
+    def __repr__(self):
+        return f"Node: (val: {self.val} left: {self.left} right: {self.right})"   
+    
 class Solution:
-    def max_depth(self, Tree: 'Node'):
+    def maxDepth(self, root: Optional[Node]) -> int:
+        if root is None:
+            return 0
+        
+        x = self.maxDepth(root.left) + 1
 
-        depth = 0
-        queue : list[Any] = []
-        queue.append(Tree)
-        counter = 0
+        y = self.maxDepth(root.right) + 1
 
-        while queue:
-            x = queue.pop(0)
-            
-            print(f'{x} \n')
-            if x.left:
-                print(f'left {x.left}')
-                queue.append(x.left)
-            if x.right:
-                print(f'right {x.right} \n')
-                queue.append(x.right)
-            
-            if counter == 0:
-                depth += 1
-                counter = len(queue)
+        return max(x, y)
 
-            counter -= 1
-
-        print(depth)
-
-    def create_tree(self) -> 'Node':
+    def create_tree(self) -> Node:
         root = Node(10)
 
         root.left = Node(2)
@@ -39,19 +32,10 @@ class Solution:
         root.right.left = Node(15)
         root.right.right = Node(30)
 
+        root.left.right.right = Node(39)
+
         return root
-
-class Node:
-    def __init__(self, val: int, right: Optional['Node'] = None, left: Optional['Node'] = None):
-        self.val = val
-        self.left = left
-        self.right = right
-    
-    def __repr__(self):
-        return f"Node: (val: {self.val} left: {self.left} right: {self.right})"   
-
 
 if __name__ == '__main__':
     s = Solution()
-    s.max_depth(s.create_tree())
-    print(s)
+    s.maxDepth(s.create_tree())
